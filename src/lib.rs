@@ -49,7 +49,7 @@ fn download_and_unpack(ds: DataSource) -> Result<SampleData, String> {
 
 
     if !std::path::Path::new(&archive).is_file() {
-        info!("Downloading {:?}", ds.url);
+        debug!("Downloading {:?}", ds.url);
 
         let mut resp = reqwest::blocking::get(ds.url).map_err(|e| format!("{:?}", e))?;
         let mut out = File::create(&archive).map_err(|e| format!("{:?}", e))?;
@@ -61,10 +61,9 @@ fn download_and_unpack(ds: DataSource) -> Result<SampleData, String> {
     info!("Unzipping...");
 
     Unzipper::new(File::open(&archive).unwrap(), ds.name).unzip().map_err(|e| format!("{:?}", e))?;
-    info!("Sample data ready. Gathering stats...");
+    debug!("Sample data ready. Gathering stats...");
 
     for entry in WalkDir::new(ds.name).into_iter().filter_map(|e| e.ok()) {
-        println!("{}", entry.path().display());
         num_files +=1;
         if let Ok(meta) = entry.metadata() {
             size += meta.len();
