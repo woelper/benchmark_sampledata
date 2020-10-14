@@ -1,0 +1,15 @@
+[package]
+name = "benchmark_sampledata"
+version = "0.1.0"
+authors = ["Johann Woelper <woelper@gmail.com>"]
+edition = "2018"
+description = "Easily pull in files for benchmarking"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+unzip = "0.1.0"
+reqwest = { version = "0.10.8", features = ["blocking"] }
+env_logger = "0.7.1"
+log = "0.4.11"
+walkdir = "2.3.1"
