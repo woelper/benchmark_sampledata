@@ -1,24 +1,23 @@
 use std::path::PathBuf;
-
-use env_logger;
-use log::*;
 use std::fs::File;
-use unzip::Unzipper;
 use std::fs;
 use std::io;
+use env_logger;
+use log::*;
+use unzip::Unzipper;
 use walkdir::WalkDir;
 
-struct DataSource {
-    name: &'static str,
-    url: &'static str
+pub struct DataSource {
+    pub name: &'static str,
+    pub url: &'static str
 }
 
 #[derive(Debug)]
 pub struct SampleData {
-    root: PathBuf,
-    num_files: u64,
-    size: u64,
-    archive: PathBuf
+    pub root: PathBuf,
+    pub num_files: u64,
+    pub size: u64,
+    pub archive: PathBuf
 }
 
 impl SampleData {
