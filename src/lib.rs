@@ -21,6 +21,7 @@ pub struct SampleData {
 }
 
 impl SampleData {
+    /// Delete all files pulled in by this SampleData
     pub fn remove(&self) -> io::Result<()>{
         fs::remove_dir_all(&self.root)?;
         fs::remove_file(&self.archive)
@@ -91,13 +92,13 @@ fn data_path(data_dir: &str) -> Option<PathBuf> {
     .map(|p| p.join(data_dir))
 }
 
-
+/// Linux kernel sources (~75k files, ~910MB)
 pub fn linux_kernel() -> Result<SampleData, String>{
     setup();
     download_and_unpack(KERNEL)
 }
 
-/// Proveide cargo sources
+/// Cargo sources (610 files, ~5MB)
 pub fn cargo_sources() -> Result<SampleData, String>{
     setup();
     download_and_unpack(CARGO)
@@ -105,6 +106,8 @@ pub fn cargo_sources() -> Result<SampleData, String>{
 
 #[test]
 fn test_kernel() {
-    // info!("{:?}", linux_kernel());
+    std::env::set_var("RUST_LOG", "INFO");
+    let _ = env_logger::builder().try_init();
+    //info!("{:?}", linux_kernel());
     info!("{:?}", cargo_sources());
 }
