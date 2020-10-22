@@ -5,6 +5,7 @@ authors = ["Johann Woelper <woelper@gmail.com>"]
 edition = "2018"
 description = "Easily pull in files for benchmarking"
 license = "MIT"
+repository "https://github.com/woelper/benchmark_sampledata"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
