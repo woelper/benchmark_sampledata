@@ -12,4 +12,6 @@ let sd = benchmark_sampledata::linux_kernel().unwrap();
 
 ```
 
+This crate will download and decompress source files such as the linux kernel or the cargo source tree. You can do what you want with these files afterwards, such as run real-world performance benchmarks. Please open an issue if you want other sample data included.
+
 Docs: https://docs.rs/benchmark_sampledata/
